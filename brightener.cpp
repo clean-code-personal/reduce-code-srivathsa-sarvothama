@@ -25,7 +25,8 @@ bool ImageBrightener::BrightenImage(int& attenuatedCount, std::shared_ptr<Image>
                 ++attenuatedCount;
                 m_inputImage->m_pixels[pixelIndex] = 255;
             }
-            else {
+            else
+            {
                 m_inputImage->m_pixels[pixelIndex] += brighteningOffset;
             }
         }

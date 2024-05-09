@@ -5,15 +5,24 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace brighteningtest
 {
+    std::shared_ptr<Image> CreateImage(uint8_t pixelValues[])
+    {
+        auto image = std::make_shared<Image>(2, 2);
+        image->m_pixels[0] = pixelValues[0]; image->m_pixels[1] = pixelValues[1];
+        image->m_pixels[2] = pixelValues[2];; image->m_pixels[3] = pixelValues[3];
+
+        return image;
+    }
+
 	TEST_CLASS(BrighteningTest)
 	{
 	public:
 		
 		TEST_METHOD(BrightensWholeImage)
 		{
-			auto image = std::make_shared<Image>(2, 2);
-			image->m_pixels[0] = 45; image->m_pixels[1] = 55;
-			image->m_pixels[2] = 65; image->m_pixels[3] = 254;
+            uint8_t pixelValues[] = { 45, 55, 65, 254 };
+
+            auto image = CreateImage(pixelValues);
 
 			ImageBrightener brightener(image);
             int attenuatedCount = 0;
@@ -24,9 +33,10 @@ namespace brighteningtest
 
 		TEST_METHOD(BrightensWithAnotherImage)
 		{
-			auto image = std::make_shared<Image>(2, 2);
-			image->m_pixels[0] = 45; image->m_pixels[1] = 55;
-			image->m_pixels[2] = 65; image->m_pixels[3] = 75;
+            uint8_t pixelValues[] = { 45, 55, 65, 75 };
+
+            auto image = CreateImage(pixelValues);
+
             ImageBrightener brightener(image);
             
             // Test by brightening only the right part
