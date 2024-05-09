@@ -17,7 +17,7 @@ namespace brighteningtest
 
 			ImageBrightener brightener(image);
             int attenuatedCount = 0;
-            brightener.BrightenImage(nullptr, attenuatedCount);
+            brightener.BrightenImage(attenuatedCount);
 			Assert::AreEqual(1, attenuatedCount);
 			Assert::AreEqual(90, int(image->m_pixels[2]));
 		}
@@ -35,7 +35,7 @@ namespace brighteningtest
             brighteningImage->m_pixels[2] = 0; brighteningImage->m_pixels[3] = 25;
 
             int attenuatedCount = 0;
-            bool succeeded = brightener.BrightenImage(brighteningImage, attenuatedCount);
+            bool succeeded = brightener.BrightenImage(attenuatedCount, brighteningImage);
             Assert::IsTrue(succeeded);
             Assert::AreEqual(45, int(image->m_pixels[0])); // left-side pixel is unchanged
             Assert::AreEqual(80, int(image->m_pixels[1])); // right-side pixel is brightened

@@ -3,7 +3,7 @@
 ImageBrightener::ImageBrightener(std::shared_ptr<Image> inputImage): m_inputImage(inputImage) {
 }
 
-bool ImageBrightener::BrightenImage(std::shared_ptr<Image> imageToAdd, int& attenuatedCount)
+bool ImageBrightener::BrightenImage(int& attenuatedCount, std::shared_ptr<Image> imageToAdd)
 {
     attenuatedCount = 0;
 
